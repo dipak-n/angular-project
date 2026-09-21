@@ -1,0 +1,198 @@
+<div class="table-container">
+
+    <!-- SEARCH -->
+
+    <div class="table-header">
+
+        <input type="text" [(ngModel)]="searchTerm" (keyup.enter)="onSearch()" (input)="onSearch()"
+            placeholder="Search employee..." class="search-input" />
+
+        <button class="add-employee btn-primary" (click)="openAddModal.emit()">
+            Add
+        </button>
+    </div>
+
+    @if (loading) {
+
+    <div class="loading">
+
+        Loading...
+
+    </div>
+
+    }
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                @for (column of columns; track column.key) {
+
+                <th class="sortable" (click)="sort(column.key.toString())">
+                    {{ column.header }}
+
+                    @if (sortColumn ===column.key) {
+                    <span>{{sortDirection === 'asc'? '↑': '↓'}}</span>
+                    }
+                </th>
+                }
+                <th> Actions </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+            @if (data.length > 0) {
+
+            @for (row of (employees$ | async); track row.id) {
+            <tr>
+                @for (column of columns;track column.key) {
+                <td>{{getValue(row,column.key)}}</td>
+                }
+
+                <td>
+                    <button class="btn-edit" (click)="edit.emit(row)">
+                        Edit
+                    </button>
+
+                    <button class="btn-delete" (click)="deleteEmit.emit(row)">
+                        Delete
+                    </button>
+
+                </td>
+
+            </tr>
+
+            }
+
+            } @else if (!loading) {
+            <tr>
+                <td [attr.colspan]=" columns.length + 1 " class="no-data">
+                    No employees found
+                </td>
+            </tr>
+            }
+        </tbody>
+
+    </table>
+
+
+    @if (totalPages > 0) {
+
+    <div class="pagination">
+
+        <button (click)="previousPage()" [disabled]=" currentPage === 1 || loading ">Previous </button>
+        @for (page of pages;track page) {
+        <button (click)="goToPage(page)" [class.active]=" currentPage === page  " [disabled]="loading"> {{ page }}
+        </button>
+        }
+
+        <button (click)="nextPage()" [disabled]=" currentPage === totalPages || loading">
+            Next
+        </button>
+        <span>Page {{ currentPage }} of {{ totalPages }} </span>
+
+        <span class="total-records"> Total: {{ totalRecords }}</span>
+
+    </div>
+
+    }
+
+</div>
+<!-- 
+<div class="table-container">
+    
+    <div class="table-header">
+        <input type="text" [(ngModel)]="searchTerm" (keyup.enter)="onSearch()" (input)="onSearch()"
+            placeholder="Search employee..." class="search-input" />
+
+        <button class="add-employee btn-primary" (click)="openAddModal.emit()">
+            Add
+        </button>
+
+    </div>
+
+
+    <div class="loading" *ngIf="loading">
+        Loading...
+    </div>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th *ngFor="let column of columns" class="sortable" (click)="sort(column.key.toString())">
+                    {{ column.header }}
+                    <span *ngIf="sortColumn === column.key">
+                        {{ sortDirection === 'asc' ? '↑' : '↓' }}
+                    </span>
+
+                </th>
+
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            <ng-container *ngIf="data.length > 0; else noData">
+                <tr *ngFor="let row of data">
+                    <td *ngFor="let column of columns">
+                        {{ getValue(row, column.key) }}
+                    </td>
+                    <td>
+                        <button class="btn-edit" (click)="edit.emit(row)">
+                            Edit
+                        </button>
+
+                        <button class="btn-delete" (click)="deleteEmit.emit(row)">
+                            Delete
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            </ng-container>
+
+
+            <ng-template #noData>
+                <tr *ngIf="!loading">
+                    <td [attr.colspan]="columns.length + 1" class="no-data">
+                        No employees found
+                    </td>
+                </tr>
+            </ng-template>
+        </tbody>
+    </table>
+
+
+    <div class="pagination" *ngIf="totalPages > 0">
+        <button (click)="previousPage()" [disabled]="currentPage === 1 || loading">
+            Previous
+        </button>
+
+        <button *ngFor="let page of pages" (click)="goToPage(page)" [class.active]="currentPage === page"
+            [disabled]="loading">
+            {{ page }}
+        </button>
+
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages || loading">
+            Next
+        </button>
+
+
+        <span class="total-records">
+            Total: {{ totalRecords }}
+        </span>
+
+    </div>
+
+</div> -->

@@ -1,0 +1,91 @@
+<div class="subject-demo">
+
+    <h2>RxJS Subject Demo</h2>
+
+
+    <!-- SUBJECT -->
+
+    <section>
+
+        <h3>1. Subject</h3>
+
+        <button (click)="testSubject()">
+            Send Refresh Event
+        </button>
+
+        <p>
+            {{ refreshMessage }}
+        </p>
+
+    </section>
+
+
+    <!-- BEHAVIOR SUBJECT -->
+
+    <section>
+
+        <h3>2. BehaviorSubject</h3>
+
+        <button (click)="testBehaviorSubject()">
+            Select Employee
+        </button>
+
+        @if (selectedEmployee) {
+
+        <p>
+            Selected:
+            {{ selectedEmployee.name }}
+        </p>
+
+        <p>
+            {{ selectedEmployee.email }}
+        </p>
+
+        }
+
+    </section>
+
+
+    <!-- REPLAY SUBJECT -->
+
+    <section>
+
+        <h3>3. ReplaySubject</h3>
+
+        <button (click)="testReplaySubject()">
+            Add Employee Activities
+        </button>
+
+        @for (activity of activities; track $index) {
+
+        <p>
+            {{ activity }}
+        </p>
+
+        }
+
+    </section>
+
+
+    <!-- ASYNC SUBJECT -->
+
+    <section>
+
+        <h3>4. AsyncSubject</h3>
+
+        <button (click)="testAsyncSubject()">
+            Complete Employee Operation
+        </button>
+
+        @if (operationResult) {
+
+        <p>
+            Final Result:
+            {{ operationResult }}
+        </p>
+
+        }
+
+    </section>
+
+</div>

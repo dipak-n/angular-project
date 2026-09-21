@@ -1,0 +1,214 @@
+<!-- <div class="employee-container">
+
+    <div class="search-div">
+        <h2>Employee Management</h2>
+        <div class="search-container">
+
+            <input class="" type="text" placeholder="Search employee..." [formControl]="searchControl" />
+
+        </div>
+    </div>
+
+    <form class="employee-form" [formGroup]="employeeForm" (ngSubmit)="saveEmployee()">
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Name</label>
+
+                <input type="text" placeholder="Enter name" formControlName="name" />
+
+                @if (
+                employeeForm.controls.name.touched &&
+                employeeForm.controls.name.invalid
+                ) {
+                <small class="error">
+                    Name is required
+                </small>
+                }
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+
+                <input type="email" placeholder="Enter email" formControlName="email" />
+
+                @if (
+                employeeForm.controls.email.touched &&
+                employeeForm.controls.email.invalid
+                ) {
+                <small class="error">
+                    Enter a valid email
+                </small>
+                }
+            </div>
+
+            <div class="form-group">
+                <label>Department</label>
+
+                <input type="text" placeholder="Enter department" formControlName="department" />
+
+                @if (
+                employeeForm.controls.department.touched &&
+                employeeForm.controls.department.invalid
+                ) {
+                <small class="error">
+                    Department is required
+                </small>
+                }
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button type="submit" class="btn-primary">
+                {{ isEditMode ? 'Update Employee' : 'Add Employee' }}
+            </button>
+
+            @if (isEditMode) {
+            <button type="button" class="btn-secondary" (click)="resetForm()">
+                Cancel
+            </button>
+            }
+
+        </div>
+
+    </form>
+
+
+    @if (isLoading) {
+    <div class="loading">
+        Loading employees...
+    </div>
+    }
+
+
+    @if (!isLoading && employees.length === 0) {
+    <div class="empty-message">
+        No employees found.
+    </div>
+    }
+
+
+    @if (!isLoading && employees.length > 0) {
+
+    <div class="table-container">
+
+        <table class="employee-table">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @for (employee of employees; track employee.id) {
+
+                <tr>
+
+                    <td>{{ employee.id }}</td>
+
+                    <td>{{ employee.name }}</td>
+
+                    <td>{{ employee.email }}</td>
+
+                    <td>{{ employee.department }}</td>
+
+                    <td>
+
+                        <button class="btn-edit" (click)="editEmployee(employee)">
+                            Edit
+                        </button>
+
+                        <button class="btn-delete" (click)="deleteEmployee(employee.id)">
+                            Delete
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    }
+
+</div> -->
+
+<app-data-table
+    [columns]="employeeColumns"
+    /* [data]="employees" */
+    [pageSize]="pageSize"
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    [totalRecords]="totalRecords"
+    [loading]="isLoading"
+    (search)="onSearch($event)"
+    (sortChange)="onSort($event)"
+    (pageChange)="onPageChange($event)"
+    (edit)="editEmployee($event)"
+    (deleteEmit)="deleteEmployee($event)"
+    (openAddModal)="openAddModal()">
+</app-data-table>
+
+@if (isModalOpen) {
+<div class="modal-backdrop">
+    <div class="modal-card">
+        <h3>{{ isEditMode ? 'Edit Employee' : 'Add New Employee' }}</h3>
+
+        <!-- Your Reactive Form Code -->
+        <form class="employee-form" [formGroup]="employeeForm" (ngSubmit)="saveEmployee()">
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter name" formControlName="name" />
+                    @if (employeeForm.controls['name'].touched && employeeForm.controls['name'].invalid) {
+                    <small class="error">Name is required</small>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="Enter email" formControlName="email" />
+                    @if (employeeForm.controls['email'].touched && employeeForm.controls['email'].invalid) {
+                    <small class="error">Enter a valid email</small>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label>Department</label>
+                    <input type="text" placeholder="Enter department" formControlName="department" />
+                    @if (employeeForm.controls['department'].touched && employeeForm.controls['department'].invalid) {
+                    <small class="error">Department is required</small>
+                    }
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">
+                    {{ isEditMode ? 'Update' : 'Save' }}
+                </button>
+
+                <button type="button" class="btn-secondary" (click)="resetForm()">
+                    Cancel
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+}

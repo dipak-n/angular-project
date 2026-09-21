@@ -1,0 +1,112 @@
+<div>
+
+  <h1>RxJS Mapping Operators Demo</h1>
+
+
+  <!-- ========================= -->
+  <!-- SWITCHMAP -->
+  <!-- ========================= -->
+
+  <section>
+
+    <h2>1. switchMap - Search</h2>
+
+    <input
+      type="text"
+      [(ngModel)]="searchText"
+      placeholder="Search employee"
+    />
+
+    <button
+      (click)="search()">
+      Search
+    </button>
+
+    <div>
+
+      @for (employee of employees; track employee.id) {
+
+        <p>
+          {{ employee.name }}
+          -
+          {{ employee.department }}
+        </p>
+
+      }
+
+    </div>
+
+  </section>
+
+
+  <hr>
+
+
+  <!-- ========================= -->
+  <!-- MERGEMAP -->
+  <!-- ========================= -->
+
+  <section>
+
+    <h2>2. mergeMap - Parallel Save</h2>
+
+    <button
+      (click)="saveEmployees()">
+
+      Save 3 Employees
+
+    </button>
+
+  </section>
+
+
+  <hr>
+
+
+  <!-- ========================= -->
+  <!-- CONCATMAP -->
+  <!-- ========================= -->
+
+  <section>
+
+    <h2>3. concatMap - Sequential Operations</h2>
+
+    <button
+      (click)="runSequential()">
+
+      Run Operations
+
+    </button>
+
+  </section>
+
+
+  <hr>
+
+
+  <!-- ========================= -->
+  <!-- EXHAUSTMAP -->
+  <!-- ========================= -->
+
+  <section>
+
+    <h2>4. exhaustMap - Prevent Duplicate Clicks</h2>
+
+    <button
+      (click)="login()">
+
+      Login
+
+    </button>
+
+    @if (message) {
+
+      <p>
+        {{ message }}
+      </p>
+
+    }
+
+  </section>
+
+</div>

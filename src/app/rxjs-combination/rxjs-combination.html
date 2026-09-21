@@ -1,0 +1,147 @@
+<div>
+
+    <h1>
+        RxJS Combination Operators
+    </h1>
+
+
+    <h2>
+        combineLatest()
+    </h2>
+
+    <input
+        type="text"
+        placeholder="Search employee"
+        (input)="
+            onSearch(
+                $any($event.target).value
+            )
+        "
+    />
+
+
+    <select
+        (change)="
+            onDepartmentChange(
+                $any($event.target).value
+            )
+        "
+    >
+
+        <option value="All">
+            All
+        </option>
+
+        <option value="IT">
+            IT
+        </option>
+
+        <option value="HR">
+            HR
+        </option>
+
+        <option value="Finance">
+            Finance
+        </option>
+
+    </select>
+
+
+    <hr>
+
+
+    <h2>
+        withLatestFrom()
+    </h2>
+
+    <select
+        (change)="
+            onSortChange(
+                $any($event.target).value
+            )
+        "
+    >
+
+        <option value="name">
+            Name
+        </option>
+
+        <option value="email">
+            Email
+        </option>
+
+        <option value="department">
+            Department
+        </option>
+
+    </select>
+
+
+    <button
+        type="button"
+        (click)="onSearchButtonClick()"
+    >
+        Search
+    </button>
+
+
+    <hr>
+
+
+    <h2>
+        forkJoin()
+    </h2>
+
+    <button
+        type="button"
+        (click)="loadInitialData()"
+    >
+        Load Employees + Departments
+    </button>
+
+
+    <h3>
+        Employees
+    </h3>
+
+    @for (
+        employee of employees ; track employee.id
+    ) {
+
+        <p>
+            {{ employee.name }}
+            -
+            {{ employee.department }}
+        </p>
+
+    }
+
+
+    <h3>
+        Departments
+    </h3>
+
+    @for (
+        department of departments;
+        track department.id
+    ) {
+
+        <p>
+            {{ department.department }}
+        </p>
+
+    }
+
+
+    <hr>
+
+
+    <h3>
+        Result
+    </h3>
+
+    <p>
+        {{ message }}
+    </p>
+
+</div>

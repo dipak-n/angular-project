@@ -1,0 +1,121 @@
+<div>
+
+  <h2>share() vs shareReplay() vs BehaviorSubject</h2>
+
+
+  <!-- ========================= -->
+  <!-- SHARE -->
+  <!-- ========================= -->
+
+  <h3>1. share()</h3>
+
+  <p>
+    Subscriber 1:
+  </p>
+
+  @for (
+    employee of (employeesWithShare$ | async);
+    track employee.id
+  ) {
+
+    <div>
+      {{ employee.name }}
+      -
+      {{ employee.department }}
+    </div>
+
+  }
+
+
+  <p>
+    Subscriber 2:
+  </p>
+
+  @for (
+    employee of (employeesWithShare$ | async);
+    track employee.id
+  ) {
+
+    <div>
+      {{ employee.name }}
+      -
+      {{ employee.department }}
+    </div>
+
+  }
+
+
+  <hr>
+
+
+  <!-- ========================= -->
+  <!-- SHARE REPLAY -->
+  <!-- ========================= -->
+
+  <h3>2. shareReplay(1)</h3>
+
+  <p>
+    Subscriber 1:
+  </p>
+
+  @for (
+    employee of (employeesWithReplay$ | async);
+    track employee.id
+  ) {
+
+    <div>
+      {{ employee.name }}
+      -
+      {{ employee.department }}
+    </div>
+
+  }
+
+
+  <p>
+    Subscriber 2:
+  </p>
+
+  @for (
+    employee of (employeesWithReplay2$ | async);
+    track employee.id
+  ) {
+
+    <div>
+      {{ employee.name }}
+      -
+      {{ employee.department }}
+    </div>
+
+  }
+
+  <hr>
+
+  <!-- BEHAVIOR SUBJECT -->
+  <h3>3. BehaviorSubject</h3>
+
+  <button (click)="selectEmployee()">
+    Select Dipak
+  </button>
+
+
+  @if (selectedEmployee$ | async; as employee) {
+
+    <p>
+      Selected Employee:
+      {{ employee.name }}
+    </p>
+
+    <p>
+      Email:
+      {{ employee.email }}
+    </p>
+
+    <p>
+      Department:
+      {{ employee.department }}
+    </p>
+
+  }
+
+</div>
