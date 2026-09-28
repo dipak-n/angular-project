@@ -1,8 +1,64 @@
-
-<!-- <app-employee></app-employee> -->
+<app-employee></app-employee>
 <!-- <app-user-component></app-user-component> -->
 <!-- <app-subject-demo></app-subject-demo> -->
 <!-- <app-share-demo></app-share-demo> -->
 <!-- <app-rxjs-map-demo></app-rxjs-map-demo> -->
-<app-rxjs-combination></app-rxjs-combination>
+<!-- <app-rxjs-combination></app-rxjs-combination> -->
+<!-- <app-auto-save-form></app-auto-save-form> -->
+<!-- <app-employee-list></app-employee-list> -->
+<!-- <view-container-employee></view-container-employee> Dynamic Component Creation -->
+
+
+<!-- 
+    Custom Structural Directive
+    *appIfRole="'USER'" - This is a custom structural directive that will show the content only if the user has the role 'USER'.
+    *appIfRole="'ADMIN'" - This is a custom structural directive that will show the content only if the user has the role 'ADMIN'.
+    <h2>Employee Management</h2>
+
+    <div *appIfRole="'USER'">
+    <h3>Admin Panel</h3>
+    <button>Add Employee</button>
+    <button>Delete Employee</button>
+    </div>
+
+    <div *appIfRole="'ADMIN'">
+    <h3>User Panel</h3>
+    <button>View Employees</button>
+    </div> 
+-->
+
+<!-- Custom Attribute Directive
+    <h2>Custom Attribute Directive</h2>
+
+    <p appHighlight>
+        Hover over this text
+    </p>
+
+    <p appHighlight highlightColor="lightgreen">
+        Hover over this text
+    </p>
+
+    <button appHighlight highlightColor="yellow">
+        Hover over button
+    </button>
+-->
+
+<!-- Custom Pipe
+    <h2>Custom Pipe</h2>
+
+    <p>Original: {{ employeeName }}</p>
+
+    <p>Formatted: {{ employeeName | employeeFormat }}</p>
+-->
+    
+
+<h1>Employee Application</h1>
+
+<nav>
+    <a routerLink="/home">Home</a>
+    <a routerLink="/employees">Employees</a>
+</nav>
+
+<hr>
+
 <router-outlet />

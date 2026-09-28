@@ -1,0 +1,32 @@
+.container {
+  width: 600px;
+  margin: 30px auto;
+}
+
+.search-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 8px;
+  flex: 1;
+}
+
+button {
+  padding: 8px 14px;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.actions {
+  margin: 20px 0;
+}
+
+.template-card {
+  margin-top: 20px;
+  padding: 15px;
+  border: 2px dashed #999;
+  border-radius: 6px;
+}

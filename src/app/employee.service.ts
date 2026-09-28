@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { AsyncSubject, BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
+import { AsyncSubject, BehaviorSubject, Observable, of, ReplaySubject, Subject } from 'rxjs';
 
 import { Employee } from './employee.model';
 
@@ -17,7 +17,7 @@ export class EmployeeService {
   replaySubject = new ReplaySubject<Employee>(1);
 
   // GET employees with search + sorting + pagination
-  getEmployees( page: number, pageSize: number, search: string, sortColumn: string, sortDirection: 'asc' | 'desc' ): Observable<EmployeeApiResponse> {
+  getEmployees( page = 0, pageSize = 5, search = '', sortColumn = '', sortDirection: 'asc' | 'desc' ): Observable<EmployeeApiResponse> {
     let params = new HttpParams().set('_page', page).set('_per_page', pageSize);
     if (search.trim()) {
       params = params.set('name:contains',search.trim());
@@ -28,7 +28,6 @@ export class EmployeeService {
     }
     return this.http.get<EmployeeApiResponse>(this.apiUrl,{ params });
   }
-
 
   // Add
   addEmployee(employee: Omit<Employee, 'id'>): Observable<Employee> {
@@ -87,6 +86,10 @@ export class EmployeeService {
   completeOperation(message: string): void {
     this.operationSubject.next(message);
     this.operationSubject.complete();
+  }
+
+  getEmployeeById(id: number): Observable<Employee> {
+    return this.http.get<Employee>(`${this.apiUrl}/${id}`);
   }
 }
 

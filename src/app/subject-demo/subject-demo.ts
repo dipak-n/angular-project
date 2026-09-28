@@ -105,6 +105,13 @@ export class SubjectDemo implements OnInit {
 // ReplaySubject(n)	Last N	Last N values	History/replay
 // AsyncSubject	Final 1	Final value after complete()	Final result
 
+// Imagine a YouTube channel:
+
+// Subject → You only see the livestream from the moment you join.
+// BehaviorSubject → You immediately get the current/latest status.
+// ReplaySubject → You get the last few updates that happened before joining.
+// AsyncSubject → You get only the final result after everything is finished.
+
 // "shareReplay() is an RxJS operator used to share an existing Observable and replay previously emitted values, commonly used with HTTP requests. 
 // ReplaySubject is a Subject that stores a specified number of previous emissions and replays them to new subscribers. 
 // With ReplaySubject, we manually control emissions using next()."

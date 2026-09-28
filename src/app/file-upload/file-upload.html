@@ -1,0 +1,27 @@
+<div>
+    <h2>File Upload</h2>
+
+    <input type="file" (change)="onFileSelected($event)" />
+
+    @if (selectedFile) {
+    <p>Selected file: {{ selectedFile.name }}</p>
+    }
+
+    <button type="button" (click)="uploadFile()">
+        Upload
+    </button>
+
+    @if (uploadMessage) {
+    <p>{{ uploadMessage }}</p>
+    }
+</div>
+
+<div>
+    <h2>File Download</h2>
+
+    <p>File: {{ fileName }}</p>
+
+    <button type="button" (click)="downloadFile()" [disabled]="downloading">
+        {{ downloading ? 'Downloading...' : 'Download File' }}
+    </button>
+</div>

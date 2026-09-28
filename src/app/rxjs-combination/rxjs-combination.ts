@@ -106,8 +106,8 @@ export class RxjsCombinationComponent implements OnInit {
   }
 }
 
-// | Operator           | Think                                                 |
-// | ------------------ | ----------------------------------------------------- |
-// | `combineLatest()`  | **Anyone changes → give me everything latest**        |
-// | `withLatestFrom()` | **Main source triggers → give me latest from others** |
-// | `forkJoin()`       | **Wait for everyone to finish → give final results**  |
+// | Operator                  | Think                                                 |
+// | ------------------        | ----------------------------------------------------- |
+// | `combineLatest()`         | **Anyone changes → give me everything latest**        |
+// | `withLatestFrom()`        | **Main source triggers → give me latest from others** |
+// | `forkJoin()`              | **Wait for everyone to finish → give final results**  |

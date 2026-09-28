@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RxjsMapDemoComponent } from './rxjs-map-demo';
+import { AutoSaveFormComponent } from './auto-save-form';
 
-describe('RxjsMapDemoComponent', () => {
-  let component: RxjsMapDemoComponent;
-  let fixture: ComponentFixture<RxjsMapDemoComponent>;
+describe('AutoSaveFormComponent', () => {
+  let component: AutoSaveFormComponent;
+  let fixture: ComponentFixture<AutoSaveFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RxjsMapDemoComponent],
+      imports: [AutoSaveFormComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(RxjsMapDemoComponent);
+    fixture = TestBed.createComponent(AutoSaveFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

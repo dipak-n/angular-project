@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RxjsMapDemoComponent } from './rxjs-map-demo';
+import { EmployeeDetailsComponent } from './employee-details';
 
-describe('RxjsMapDemoComponent', () => {
-  let component: RxjsMapDemoComponent;
-  let fixture: ComponentFixture<RxjsMapDemoComponent>;
+describe('EmployeeDetails', () => {
+  let component: EmployeeDetailsComponent;
+  let fixture: ComponentFixture<EmployeeDetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RxjsMapDemoComponent],
+      imports: [EmployeeDetailsComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(RxjsMapDemoComponent);
+    fixture = TestBed.createComponent(EmployeeDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

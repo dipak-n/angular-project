@@ -1,0 +1,19 @@
+<div class="panel">
+
+  <div class="panel-header">
+
+    <ng-content select="[panel-title]"></ng-content>
+
+  </div>
+
+  <div class="panel-body">
+
+    <ng-content></ng-content>
+
+  </div>
+
+  <button (click)="highlightAll()">
+    Highlight All Employees
+  </button>
+
+</div>

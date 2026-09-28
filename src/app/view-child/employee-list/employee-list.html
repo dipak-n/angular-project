@@ -1,0 +1,96 @@
+<div class="container">
+
+  <h2>Employee Management</h2>
+
+  <!-- ViewChild -->
+  <div class="search-section">
+
+    <input
+      #searchInput
+      type="text"
+      placeholder="Search employee..."
+    >
+
+    <button (click)="focusSearch()">
+      Focus Search
+    </button>
+
+  </div>
+
+
+  <!-- ViewChild + ViewChildren -->
+
+  <h3>Employees</h3>
+
+  @for (employee of employees; track employee.id) {
+
+    <app-employee-card
+      [employee]="employee">
+    </app-employee-card>
+
+  }
+
+
+  <div class="actions">
+
+    <button (click)="highlightFirstEmployee()">
+      Highlight First Employee
+    </button>
+
+    <button (click)="highlightAllEmployees()">
+      Highlight All Employees
+    </button>
+
+  </div>
+
+
+  <!-- ng-template -->
+
+  <h3>Employee Template</h3>
+
+  <ng-template #employeeTemplate let-name="name" let-role="role" let-department="department">
+
+    <div class="template-card">
+
+      <h4>{{ name }}</h4>
+
+      <p>{{ role }}</p>
+
+      <p>{{ department }}</p>
+
+    </div>
+
+  </ng-template>
+
+
+  <!-- Render ng-template -->
+  <ng-container *ngTemplateOutlet="employeeTemplate; context: {
+      name: 'Rahul',
+      role: 'Angular Developer',
+      department: 'IT'
+    }">
+  </ng-container>
+
+</div>
+
+
+
+<h2>Employee Management</h2>
+
+<app-employee-panel>
+
+  <!-- Projected title -->
+  <h3 panel-title #panelTitle>
+    Employee List
+  </h3>
+
+  <!-- Projected employee cards -->
+  @for (employee of employees; track employee.id) {
+
+    <app-employee-card
+      [employee]="employee">
+    </app-employee-card>
+
+  }
+
+</app-employee-panel>

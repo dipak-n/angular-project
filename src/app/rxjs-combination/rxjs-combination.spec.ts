@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RxjsCombination } from './rxjs-combination';
+import { RxjsCombinationComponent } from './rxjs-combination';
 
-describe('RxjsCombination', () => {
-  let component: RxjsCombination;
-  let fixture: ComponentFixture<RxjsCombination>;
+describe('RxjsCombinationComponent', () => {
+  let component: RxjsCombinationComponent;
+  let fixture: ComponentFixture<RxjsCombinationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RxjsCombination],
+      imports: [RxjsCombinationComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(RxjsCombination);
+    fixture = TestBed.createComponent(RxjsCombinationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

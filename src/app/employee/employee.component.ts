@@ -5,6 +5,7 @@ import { Employee } from '../employee.model';
 import { DataTableComponent, TableColumn, SortEvent } from '../shared/data-table/data-table';
 import { debounceTime, distinctUntilChanged, switchMap, tap, catchError, finalize } from 'rxjs/operators';
 import { forkJoin, combineLatest, BehaviorSubject, Subject, Subscription, of, from, retry } from 'rxjs';
+import { UnsavedChanges } from '../../guards/unsaved-changes';
 
 @Component({
   selector: 'app-employee',
@@ -13,14 +14,21 @@ import { forkJoin, combineLatest, BehaviorSubject, Subject, Subscription, of, fr
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.scss',
 })
-export class EmployeeComponent implements OnInit {
+export class EmployeeComponent implements OnInit, UnsavedChanges {
 
   private fb = inject(FormBuilder);
   private employeeService = inject(EmployeeService);
   // private dataTable = inject(DataTableComponent);
   // public cdr = Inject(ChangeDetectorRef);
+  employeeName = 'Rahul';
+  originalName = 'Rahul';
+
   constructor(public cdr: ChangeDetectorRef) {
 
+  }
+
+  hasUnsavedChanges(): boolean {
+    return this.employeeName !== this.originalName;
   }
 
   employees: Employee[] = [];
@@ -88,7 +96,9 @@ export class EmployeeComponent implements OnInit {
   }
 
   searchEmployee(): void {
-    this.searchSubscription = this.searchSubject.pipe(debounceTime(300), distinctUntilChanged(),
+    this.searchSubscription = this.searchSubject.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
       tap((search: any) => {
         this.searchValue = search;
         this.currentPage = 1;
@@ -299,3 +309,27 @@ export class EmployeeComponent implements OnInit {
 
 
 }
+
+// 7. Important FormArray methods
+
+// | Method                   | Purpose                       |
+// | ------------             | ---------------------------   |
+// | `push()`                 | Add a control/group           |  this.projects.push(this.createProject());
+// | `removeAt()`             | Remove by index               |  this.projects.removeAt(1);
+// | `at()`                   | Get control at index          |  this.projects.at(0);
+// | `insert()`               | Insert at specific position   |  this.projects.insert(1, this.createProject());
+// | `clear()`                | Remove everything             |  this.projects.clear();
+// | `length`                 | Number of controls            |  this.projects.length;
+
+
+// | `FormGroup`              | `FormArray`                   |
+// | ------------------------ | ----------------------------- |
+// | Fixed controls           | Dynamic controls              |
+// | Uses named keys          | Uses indexes                  |
+// | `name`, `email`          | `projects[0]`, `projects[1]`  |
+// | Best for known structure | Best for repeatable structure |
+
+// | this.fb.group({          | this.fb.array([               |
+// |   name: [''],            |   this.createProject(),       |
+// |   email: ['']            |   this.createProject()        |
+// | });                      | ]);                           | 
